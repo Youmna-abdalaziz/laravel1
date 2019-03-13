@@ -21,5 +21,5 @@ Route::post('/posts','PostsController@store')->name('posts.store');
 Route::get('/posts/{post}/edit','PostsController@edit')->name('posts.edit');
 Route::put('/posts/{post}/update','PostsController@update')->name('posts.update');
 Route::get('/posts/{post}/show','PostsController@show')->name('posts.show');
-Route::delete('/posts/{post}/destroy','PostsController@destroy')->name('posts.destroy');
+Route::delete('/posts/{post}','PostsController@destroy')->name('posts.destroy');
 

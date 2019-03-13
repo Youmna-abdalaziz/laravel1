@@ -43,8 +43,10 @@ class PostsController extends Controller
         }
         public function show(Post $post)
         {
+            $users = User::all();
             return view('posts.show',[
                 'post' => $post,
+                'users' => $users,
             ]);
         }
     
@@ -52,6 +54,7 @@ class PostsController extends Controller
     public function destroy(Post $post)
     {
        $affectedRows = Post::where('id',$post->id)->delete();
+       return redirect()->route('posts.index');
        // table('posts')->where('id', $post->id)->delete();
     }
 }

@@ -24,10 +24,16 @@
       <td>{{$post->description}}</td>
       <td>{{ isset($post->user) ? $post->user->name : 'Not Found'}}</td>
       <td>{{$post->created_at->format('Y - m - d')}}</td>
-      <td><a href="{{route('posts.show',[$post->id])}}" class="btn btn-primary">View</a>
+      <td><a href="{{route('posts.show',[$post->id,$post->user_id])}}" class="btn btn-primary">View</a>
       <a href="{{route('posts.edit',[$post->id])}}" class="btn btn-success">Edit</a>
-      <a href="{{route('posts.destroy',[$post->id])}}" class="btn btn-danger">Delete</a>
-      </td>
+      <form action="{{route('posts.destroy', [$post->id])}}" method="post">
+   @method("DELETE")
+    @csrf
+    <!-- <h2>Are you Sure you want to delete</h2> -->
+    <!--a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{route('posts.destroy', $post->id)}}"><i class="fa fa-trash"></i></a>-->
+    <button type="submit" onclick="return confirm ('Are you sure?')"class="btn btn-danger">Delete</button>
+   </form>
+   </td>
     </tr>
 @endforeach
 </tbody>

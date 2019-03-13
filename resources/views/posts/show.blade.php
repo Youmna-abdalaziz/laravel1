@@ -12,7 +12,8 @@
 <br>
 <br>
 <h3>Creator Info</h3>
-<label>Name:$user->name</label>
+
+<label>Name:</label>
 
 
 @endsection

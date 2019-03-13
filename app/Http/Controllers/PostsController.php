@@ -35,9 +35,9 @@ class PostsController extends Controller
             'users' => $users,
             ]);
         }
-        public function update()
+        public function update(Post $post)
         {
-            put::update(request()->all());
+            $post->update(request()->all());
             return redirect()->route('posts.index');
 
         }
@@ -51,6 +51,7 @@ class PostsController extends Controller
 
     public function destroy(Post $post)
     {
+       $affectedRows = Post::where('id',$post->id)->delete();
        // table('posts')->where('id', $post->id)->delete();
     }
 }

@@ -19,7 +19,7 @@
 <label>{{ isset($post->user) ? $post->user->email : 'Not Found'}}</label>
 <br>
 <b><label>Created at:</label></b>
-<label>{{$post->created_at->format('l jS \of F Y h:i:s A')}}</label>
+<label>{{ isset($post->user) ? $post->user->created_at->format('l jS \of F Y h:i:s A') : 'Not Found'}}</label>
 <br>
 <br>
 <a href="{{route('posts.index')}}" class="btn btn-success">Back</a>

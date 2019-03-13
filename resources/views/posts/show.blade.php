@@ -1,19 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{route('posts.index')}}" class="btn btn-success">Back</a>
+<br>
 <h3>Post Info </h3>
-<label>Title:</label>
+<b><label>Title:</label></b>
 <label>{{$post->title}}</label>
 <br>
-<label>Description:</label>
+<b><label>Description:</label></b>
 <label>{{$post->description}}</label>
 <br>
 <br>
 <br>
 <h3>Creator Info</h3>
-
-<label>Name:</label>
-
+<b><label>Name:</label></b>
+<label>{{ isset($post->user) ? $post->user->name : 'Not Found'}}</label>
+<br>
+<b><label>Email:</label></b>
+<label>{{ isset($post->user) ? $post->user->email : 'Not Found'}}</label>
+<br>
+<b><label>Created at:</label></b>
+<label>{{$post->created_at->format('l jS \of F Y h:i:s A')}}</label>
+<br>
+<br>
+<a href="{{route('posts.index')}}" class="btn btn-success">Back</a>
 
 @endsection

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use Carbon\Carbon;
 class PostsController extends Controller
 {
     public function index()
@@ -55,6 +56,5 @@ class PostsController extends Controller
     {
        $affectedRows = Post::where('id',$post->id)->delete();
        return redirect()->route('posts.index');
-       // table('posts')->where('id', $post->id)->delete();
     }
 }

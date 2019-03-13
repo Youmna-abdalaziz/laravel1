@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
  @section('content')
- <a href="{{route('posts.index')}}" class="btn btn-danger">Back</a>
-
     <form action="{{route('posts.store')}}" method="POST">
         @csrf
         <div class="form-group">
@@ -14,16 +12,18 @@
             <textarea name="description" class="form-control"></textarea>
         </div>
 
-         <div class="form-group">
+        <div class="form-group">
             <label for="exampleInputPassword1">Post Creator</label>
             <select class="form-control" name="user_id">
                 @foreach($users as $user)
                     <option value="{{$user->id}}">{{$user->name}}</option>
-@endforeach
-</select>
+                @endforeach
+            </select>
         </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    <a href="{{route('posts.index')}}" class="btn btn-success">Back</a>
+
 
 @endsection

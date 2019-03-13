@@ -8,6 +8,7 @@
       <th scope="col">Title</th>
       <th scope="col">Description</th>
       <th scope="col">Creator Name</th>
+      <th scope="col">Created_at</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
       <td>{{$post->title}}</td>
       <td>{{$post->description}}</td>
       <td>{{ isset($post->user) ? $post->user->name : 'Not Found'}}</td>
+      <td>{{$post->created_at->format('Y - m - d')}}</td>
       <td><a href="{{route('posts.show',[$post->id])}}" class="btn btn-primary">View</a>
       <a href="{{route('posts.edit',[$post->id])}}" class="btn btn-success">Edit</a>
       <a href="{{route('posts.destroy',[$post->id])}}" class="btn btn-danger">Delete</a>

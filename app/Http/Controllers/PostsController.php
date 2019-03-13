@@ -29,11 +29,19 @@ class PostsController extends Controller
         //select * from posts where id=1 limit 1;
         // $post = Post::where('id',$post)->first();
         // $post = Post::find($post);
+        $users = User::all();
         return view('posts.edit', [
             'post' => $post,
+            'users' => $users,
             ]);
         }
-        public function show(post $post)
+        public function update()
+        {
+            put::update(request()->all());
+            return redirect()->route('posts.index');
+
+        }
+        public function show(Post $post)
         {
             return view('posts.show',[
                 'post' => $post,
@@ -43,6 +51,6 @@ class PostsController extends Controller
 
     public function destroy(Post $post)
     {
-        DB::table('posts')->where('id', $post->id)->delete();
+       // table('posts')->where('id', $post->id)->delete();
     }
 }

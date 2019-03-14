@@ -13,6 +13,7 @@
       <th scope="col">Description</th>
       <th scope="col">Creator Name</th>
       <th scope="col">Created_at</th>
+      <th scope="col">Slug</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -24,6 +25,7 @@
       <td>{{$post->description}}</td>
       <td>{{ isset($post->user) ? $post->user->name : 'Not Found'}}</td>
       <td>{{$post->created_at->format('Y - m - d')}}</td>
+      <td>{{ isset($post->slug) ? $post->slug : 'Not Found'}}</td>
       <td>
         <a href="{{route('posts.show',[$post->id,$post->user_id])}}" class="btn btn-primary">View</a>
         <a href="{{route('posts.edit',[$post->id])}}" class="btn btn-success">Edit</a>

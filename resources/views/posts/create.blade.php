@@ -23,6 +23,7 @@
 
         <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        <br>
     <a href="{{route('posts.index')}}" class="btn btn-success">Back</a>
 
 

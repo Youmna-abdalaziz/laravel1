@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use Carbon\Carbon;
+use App\Http\Requests\Post\StorePostRequest;
 class PostsController extends Controller
 {
     public function index()
@@ -19,9 +20,9 @@ class PostsController extends Controller
             'users' => $users,
         ]);
     }
-    public function store()
+    public function store(StorePostRequest $request)
     {
-        Post::create(request()->all());
+        Post::create($request->all());
         return redirect()->route('posts.index');
     }
     public function edit(Post $post)
@@ -36,12 +37,18 @@ class PostsController extends Controller
             'users' => $users,
             ]);
         }
-        public function update(Post $post)
+        public function update(StorePostRequest $request)
+        {
+            $request->update(request()->all());
+            return redirect()->route('posts.index');
+
+        }
+        /*public function update(Post $post)
         {
             $post->update(request()->all());
             return redirect()->route('posts.index');
 
-        }
+        }*/
         public function show(Post $post)
         {
             $users = User::all();

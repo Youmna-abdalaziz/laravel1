@@ -47,8 +47,11 @@ class PostsController extends Controller
             //if (in_array($request['user_id'],$users['#items'])){
             //    echo "hdhhdhdhdh";
             //}
+            //$post->slug = null;
+            //Post::where('id',$post->id)->update(['title'=>$request['title'],'description'=>$request['description'],'user_id'=>$request['user_id']]);
+            //Post::update($request()->all());
+            //dd($request);
             $post->update($request->all());
-            
             return redirect()->route('posts.index');
             
 

@@ -23,9 +23,11 @@ class StorePostRequest extends FormRequest
      */
     public function rules()
     {
+        //dd(request('user'));
         return [
             'title' => 'required|min:3|unique:posts,title',
-            'description' => 'required|min:10'
+            'description' => 'required|min:10',
+            'user_id' => 'exists:users,id'
         ];
     }
     public function messages()
@@ -35,7 +37,8 @@ class StorePostRequest extends FormRequest
             'title.min' => 'The Title must be at least 3 characters',
             'title.unique' => 'Title must be Unique',
             'description.required' => 'The description is Required',
-            'description.min' => 'The description must be at least 10 characters'
+            'description.min' => 'The description must be at least 10 characters',
+            'user_id.exists'=>'This Id is not Exists please enter valid id'
         ];
     }
 }

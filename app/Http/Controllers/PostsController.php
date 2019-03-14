@@ -5,6 +5,7 @@ use App\Post;
 use App\User;
 use Carbon\Carbon;
 use App\Http\Requests\Post\StorePostRequest;
+use App\Http\Requests\Post\UpdatePostRequest;
 class PostsController extends Controller
 {
     public function index()
@@ -37,10 +38,19 @@ class PostsController extends Controller
             'users' => $users,
             ]);
         }
-        public function update(StorePostRequest $request)
+        public function update(UpdatePostRequest $request,Post $post)
         {
-            $request->update(request()->all());
+            //dd($request);
+            //$users = User::all();
+            //dd($users->pluck('id')->toArray());
+            //dd($users['items']);
+            //if (in_array($request['user_id'],$users['#items'])){
+            //    echo "hdhhdhdhdh";
+            //}
+            Post::where('id',$post->id)->update(['title'=>$request['title'],'description'=>$request['description'],'user_id'=>$request['user_id']]);
+            //Post::update($request()->all());
             return redirect()->route('posts.index');
+            
 
         }
         /*public function update(Post $post)

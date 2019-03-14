@@ -23,3 +23,7 @@ Route::put('/posts/{post}/update','PostsController@update')->name('posts.update'
 Route::get('/posts/{post}/show','PostsController@show')->name('posts.show');
 Route::delete('/posts/{post}','PostsController@destroy')->name('posts.destroy');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

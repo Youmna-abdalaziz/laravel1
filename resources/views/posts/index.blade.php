@@ -29,14 +29,14 @@
       <td>
         <a href="{{route('posts.show',[$post->id,$post->user_id])}}" class="btn btn-primary">View</a>
         <a href="{{route('posts.edit',[$post->id])}}" class="btn btn-success">Edit</a>
-        <form action="{{route('posts.destroy', [$post->id])}}" method="post">
+        <form class="delform" action="{{route('posts.destroy', [$post->id])}}" method="post">
             @method("DELETE")
             @csrf
             <button type="submit" onclick="return confirm ('Are you sure?')"class="btn btn-danger">Delete</button>
         </form>
       </td>
     </tr>
-  @endforeach
+    @endforeach
 </tbody>
 </table>
 @endsection

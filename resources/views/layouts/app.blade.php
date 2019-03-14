@@ -19,6 +19,11 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+<style>
+    .delform{
+      display: inline-block;
+    }
+    </style>
 <body>
     
     <div id="app">

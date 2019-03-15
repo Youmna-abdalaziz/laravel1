@@ -1,5 +1,5 @@
 <?php
-
+ use App\Post;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +36,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 /*Route::get('/posts', 'PostsController@index')
 ->name('posts.index')
 ->middleware('auth');
@@ -59,6 +63,3 @@ Route::delete('/posts/{post}','PostsController@destroy')
 ->middleware('auth');*/
 
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

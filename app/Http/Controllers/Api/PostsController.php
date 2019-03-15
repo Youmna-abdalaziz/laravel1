@@ -12,8 +12,9 @@ class PostsController extends Controller
     public function index()
     {
         //return Post::all();
-        $posts = Post::paginate(3);
-        return PostResource::collection($posts);
+        //$posts = Post::paginate(3);
+        //return PostResource::collection($posts);
+        return PostResource::collection(Post::with('user')->paginate(3));
     }
 
     public function show($post)

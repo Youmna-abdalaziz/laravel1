@@ -39,7 +39,8 @@ Route::group(['middleware' => 'auth'], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('login/github', 'Auth\LoginController@redirectToProvider')->name('github');
+Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
 /*Route::get('/posts', 'PostsController@index')
 ->name('posts.index')
 ->middleware('auth');

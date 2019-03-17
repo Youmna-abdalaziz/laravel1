@@ -59,8 +59,8 @@ class LoginController extends Controller
     }
     public function findOrCreateUser($user, $provider)
     {
-        dd($user);
-        $authUser = User::where('github_id', $user->id)->first();
+        //dd($user);
+        $authUser = User::where('email', $user->email)->first();
         if ($authUser) {
             return $authUser;
         }
@@ -98,7 +98,6 @@ class LoginController extends Controller
                 'password' => $userSocial->token
             ]);
             Auth::login($user);
-
             return (redirect()->route('posts.index'));
         }
     }

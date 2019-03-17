@@ -41,6 +41,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('login/github', 'Auth\LoginController@redirectToProvider')->name('github');
 Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('login/google', 'Auth\LoginController@redirectToGoogle')->name('google');
+Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
+
 /*Route::get('/posts', 'PostsController@index')
 ->name('posts.index')
 ->middleware('auth');

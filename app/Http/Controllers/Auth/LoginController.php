@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
+use Google_Client;
+use Google_Service_People;
 use App\User;
 use Auth;
 class LoginController extends Controller
@@ -57,7 +59,7 @@ class LoginController extends Controller
     }
     public function findOrCreateUser($user, $provider)
     {
-        //dd($user);
+        dd($user);
         $authUser = User::where('github_id', $user->id)->first();
         if ($authUser) {
             return $authUser;
@@ -71,5 +73,51 @@ class LoginController extends Controller
             'password'=> $user->token
         ]);
     }
+
+    public function redirectToGoogle(){
+
+        return Socialite::driver('google')->redirect();
+    }
+    public function handleGoogleCallback(){
+        $provider = 'google';
+        /*$user = Socialite::driver('google')->user();
+        $authUser = $this->googlefindOrCreateUser($user, $provider);
+        Auth::login($authUser, true);*/
+        $userSocial =Socialite::driver($provider)->stateless()->user();
+        $AuthUser=User::where(['email' => $userSocial->getEmail()])->first();
+        if($AuthUser){
+            Auth::login($AuthUser);
+            return (redirect()->route('posts.index'));
+            
+        }else{
+            $user = User::create([
+                'name'          => $userSocial->getName(),
+                'email'         => $userSocial->getEmail(),
+                'google_id'   => $userSocial->getId(),
+                'provider'      => $provider,
+                'password' => $userSocial->token
+            ]);
+            Auth::login($user);
+
+            return (redirect()->route('posts.index'));
+        }
+    }
+        
 }
 
+
+    /*public function googlefindOrCreateUser($user, $provider)
+    {
+        dd($user);
+        $authUser = User::where('google_id', $user->id)->first();
+        if ($authUser) {
+            return $authUser;
+        }
+        return User::create([
+            'name'     => $user->nickname,
+            'email'    => $user->email,
+            'provider' => $provider,
+            'google_id' => $user->id,
+            'password'=> $user->token
+        ]);
+    }*/

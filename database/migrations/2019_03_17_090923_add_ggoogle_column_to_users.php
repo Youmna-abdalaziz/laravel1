@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddGithubColumnToUsers extends Migration
+class AddGgoogleColumnToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,9 @@ class AddGithubColumnToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('github_id')->unique()->nullable();
-            $table->string('avatar')->nullable();
+            $table->string('google_id')->unique()->nullable();
         });
     }
 
+   
 }
